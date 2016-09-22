@@ -1,16 +1,3 @@
-from Game import Game
-from MainMenu import Menu
-
-
-class States(object):
-	def __init__(self):
-		self.done = False
-		self.next = None
-		self.quit = False
-		self.prev = None
-		self.screen = None
-
-
 class StateControl:
 	def __init__(self, fps):
 		self.fps = fps
@@ -37,26 +24,14 @@ class StateControl:
 			self.done = True
 		elif self.state.done:
 			self.flip_state()
-		self.state.update(self.screen, dt)
+		self.state.update(dt)
 
 	def event_loop(self):
 		# get events here
-		self.state.get_event()
+		self.state.get_event(None)
 
 	def main_game_loop(self):
 		while not self.done:
-			delta_time = self.clock.tick(self.fps) / 1000.0
 			self.event_loop()
-			self.update(delta_time)
+			self.update(self.fps)
 		# update display
-
-
-fps = 60
-
-app = StateControl(fps)
-state_dict = {
-	'menu': Menu(),
-	'game': Game()
-}
-app.setup_states(state_dict, 'menu')
-app.main_game_loop()
