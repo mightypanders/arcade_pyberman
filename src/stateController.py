@@ -1,3 +1,4 @@
+
 class StateControl:
 	def __init__(self, fps):
 		self.fps = fps
@@ -19,19 +20,19 @@ class StateControl:
 		self.state.startup()
 		self.state.prev = prev
 
-	def update(self, dt):
+	def update(self):
 		if self.state.quit:
 			self.done = True
 		elif self.state.done:
 			self.flip_state()
-		self.state.update(dt)
+		self.state.update()
 
 	def event_loop(self):
 		# get events here
-		self.state.get_event(None)
+		self.state.handle_events(None)
 
 	def main_game_loop(self):
 		while not self.done:
 			self.event_loop()
-			self.update(self.fps)
+			self.update()
 		# update display

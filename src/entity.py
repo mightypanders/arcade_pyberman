@@ -33,4 +33,4 @@ class Bomb(arcade.AnimatedTimeSprite):
 		       [33, 255, 16, 17],
 		       [18, 255, 16, 17],
 		       [33, 255, 16, 17], ]
-		self.textures.append(arcade.load_textures(file, loc, False))
+		self.textures = arcade.load_textures(file, loc, False)
