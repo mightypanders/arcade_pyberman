@@ -1,18 +1,21 @@
-import datetime
+from datetime import datetime
 
 import arcade
+from const import *
+import texturestore
+def init_textures():
+	texturestore.bomb_sprite = get_bomb_textures()
+
+def get_bomb_textures():
+	#  TODO Bomb Background 192,192,192 Make transparent
+	file = "images/14bomberman.PNG"
+	loc = [[50, 255, 16, 17],
+	       [33, 255, 16, 17],
+	       [18, 255, 16, 17],
+	       [33, 255, 16, 17]]
+	return arcade.load_textures(file, loc, False)
 
 
-class Player(arcade.AnimatedWalkingSprite):
-	def __init__(self, playerno, color, filename):
-		super().__init__()
-		self.playernumber = playerno
-		self.stand_right_textures = None
-		self.bomb_list = []
-
-	def put_bomb(self):
-		bomb = Bomb(self, datetime.time)
-		self.bomb_list.append(bomb)
 
 
 class Wall():
@@ -20,17 +23,18 @@ class Wall():
 		self.color = 2
 
 
-class Bomb(arcade.AnimatedTimeSprite):
-	def __init__(self, player, placed):
+class SpriteBomb(arcade.AnimatedTimeSprite):
+	def __init__(self, player):
 		super().__init__()
 		self.player = player
-		self.timeplaced = placed
-		self.init_textures()
+		self.timeplaced = datetime.now()
+		self.textures = texturestore.bomb_sprite
+		self.transparent = True
+		self.set_position(player.center_x, player.center_y)
+		self.texture_change_frames=30
 
-	def init_textures(self):
-		file = "images/14bomberman.PNG"
-		loc = [[50, 255, 16, 17],
-		       [33, 255, 16, 17],
-		       [18, 255, 16, 17],
-		       [33, 255, 16, 17], ]
-		self.textures = arcade.load_textures(file, loc, False)
+	def update(self):
+		super(SpriteBomb, self).update()
+		if datetime.now().second - self.timeplaced.second >= 3:
+			self.kill()
+

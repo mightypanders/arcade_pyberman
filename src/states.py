@@ -1,29 +1,16 @@
 import arcade
 from const import *
 
-class States(arcade.Window):
+class GameState():
 	def __init__(self):
-		super().__init__(SCREEN_WIDTH,SCREEN_HEIGHT,TITLE)
-		self.done = False
-		self.next = None
-		self.quit = False
-		self.prev = None
-		arcade.start_render()
-	def cleanup(self):
-		pass
-	def startup(self):
-		pass
-	def handle_events(self, event):
-		pass
-	def update(self):
-		pass
-	def on_draw(self):
-		pass
+		self.done=False
+		self.next=None
+		self.quit=False
+		self.prev=None
 
-
-class Menu(States):
+class Menu(GameState):
 	def __init__(self):
-		States.__init__(self)
+		super().__init__()
 		self.next = "game"
 		self.menu_items = ("Start", "Options", "Quit")
 		print("menu state initialized")
@@ -44,9 +31,9 @@ class Menu(States):
 		pass
 
 
-class Game(States):
+class Game(GameState):
 	def __init__(self):
-		States.__init__(self)
+		super().__init__()
 		self.next = "menu"
 		self.all_sprites = arcade.SpriteList()
 		self.wall_list = arcade.SpriteList()
@@ -54,3 +41,4 @@ class Game(States):
 		self.countHorBlock = 8
 		self.countVertBlock = 10
 		print("gamestate initialized")
+
