@@ -1,4 +1,5 @@
-from BaseState import *
+from GameState import *
+from MenuState import *
 from stateController import StateControl
 
 frames = 60
