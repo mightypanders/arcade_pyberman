@@ -1,12 +1,28 @@
 import arcade
-from const import *
+
 
 class GameState():
 	def __init__(self):
-		self.done=False
-		self.next=None
-		self.quit=False
-		self.prev=None
+		self.done = False
+		self.next = None
+		self.quit = False
+		self.prev = None
+
+	def cleanup(self):
+		pass
+
+	def startup(self):
+		pass
+
+	def handle_events(self, event):
+		pass
+
+	def update(self):
+		pass
+
+	def on_draw(self):
+		pass
+
 
 class Menu(GameState):
 	def __init__(self):
@@ -42,3 +58,19 @@ class Game(GameState):
 		self.countVertBlock = 10
 		print("gamestate initialized")
 
+	def startup(self):
+		pass  # TODO Fenster hier starten
+
+	def cleanup(self):
+		pass  # TODO Fenster hier in menü wechseln
+
+	def handle_events(self, event):
+		if type(event) == type(arcade.key):
+			pass
+		pass
+
+	def update(self):
+		pass
+
+	def on_draw(self):
+		pass

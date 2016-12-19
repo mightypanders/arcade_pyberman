@@ -1,3 +1,4 @@
+import arcade
 
 class StateControl:
 	def __init__(self, fps):
@@ -5,6 +6,7 @@ class StateControl:
 		self.done = False
 		self.screen = None
 		self.clock = None
+		self.state = None
 
 	def setup_states(self, state_dict, start_state):
 		self.state_dict = state_dict
@@ -29,7 +31,7 @@ class StateControl:
 
 	def event_loop(self):
 		# get events here
-		self.state.handle_events(None)
+		self.state.handle_events(arcade.key.UP)
 
 	def main_game_loop(self):
 		while not self.done:
