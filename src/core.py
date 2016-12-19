@@ -1,5 +1,5 @@
 import arcade
-from states import *
+from BaseState import *
 from const import *
 
 class GameWindow(arcade.Window):
