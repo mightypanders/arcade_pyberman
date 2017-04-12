@@ -1,8 +1,9 @@
 import arcade
+import glob
 
-
-class BaseState():
+class BaseState(arcade.Window):
 	def __init__(self):
+		super().__init__(glob.SCR_W,glob.SCR_H,"pyberman")
 		self.done = False
 		self.next = None
 		self.quit = False
@@ -14,7 +15,10 @@ class BaseState():
 	def startup(self):
 		pass
 
-	def handle_events(self, event):
+	def on_key_press(self, symbol: int, modifiers: int):
+		pass
+
+	def on_key_release(self, symbol: int, modifiers: int):
 		pass
 
 	def update(self):
@@ -23,5 +27,6 @@ class BaseState():
 	def on_draw(self):
 		pass
 
-
+	def handle_events(self,event):
+		pass
 

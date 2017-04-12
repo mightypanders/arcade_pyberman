@@ -13,12 +13,20 @@ class Menu(BaseState):
 	def startup(self):
 		self.labels = []
 
-	def handle_events(self, event):
-		pass
+	def on_key_press(self, symbol: int, modifiers: int):
+		super().on_key_press(symbol,modifiers)
+		print("press")
+
+	def on_key_release(self, symbol: int, modifiers: int):
+		super().on_key_release(symbol,modifiers)
+		print("release")
 
 	def update(self):
 		self.on_draw()
 
 	def on_draw(self):
+		pass
+
+	def handle_events(self,event):
 		pass
 
